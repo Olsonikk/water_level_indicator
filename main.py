@@ -32,10 +32,11 @@ last_measurement=temp[-1]['date']
 for row in temp:
     dates.append(row['date'].split('T')[1][:5])
     values.append(row['value'])
-    
+
 #print(dates)
-# print(values)
-plt.figure(figsize=(15, 8))
+#print(values)
+
+plt.figure(figsize=(16, 8))
 plt.plot(dates,values)
 plt.title(f"{location} from {first_measurement} to {last_measurement}")
 
