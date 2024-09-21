@@ -7,4 +7,4 @@
 .piolibdeps
 .clang_complete
 .gcc-flags.json
-src/user_settings.h
+src/credentials.h
