@@ -22,6 +22,7 @@ location=current_json['status']['description']
 
 
 for row in history_json['operational']:
+    print(row['date'][14])
     if row['date'][14] != '0': #first 10 measurements are every 10 mins. We want results to be in 1 hour interval
         continue
     temp.append(row)
