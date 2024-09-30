@@ -195,7 +195,7 @@ void drawChart(const int coords_x, const int coords_y, const int size_x, const i
     write_string((GFXfont *)&OpenSans10B, (String(-(segments_y-i)) + "h").c_str(), &move_x , &move_y, framebuffer);     // x axis
     epd_draw_vline(coords_x + i * dist_between_hori_lines, coords_y, CHART_HEIGHT, BLACK, framebuffer);
   }
-  int scale_vert=max_water_level;
+  float scale_vert=(float) max_water_level;
   move_y = coords_y + 10;
   move_x = coords_x - 50;
   write_string((GFXfont *)&OpenSans10B, String(max_water_level).c_str(), &move_x , &move_y, framebuffer);  //max vert
@@ -205,7 +205,9 @@ void drawChart(const int coords_x, const int coords_y, const int size_x, const i
   {
     move_y = coords_y + i * dist_between_vert_lines + 5;
     move_x = coords_x - 50;
-    scale_vert -= (max_water_level - min_water_level) / segments_y;
+    scale_vert -= (float)(max_water_level - min_water_level) / (float) segments_x ;
+    Serial.println("AD: " + String(6.0f / (float) segments_x));
+    Serial.println(scale_vert);
     write_string((GFXfont *)&OpenSans10B, String(scale_vert).c_str(), &move_x , &move_y, framebuffer);    //y axis
     epd_draw_hline(coords_x, coords_y + i * dist_between_vert_lines, CHART_WIDTH, BLACK, framebuffer);
   }
@@ -241,11 +243,6 @@ void drawChart(const int coords_x, const int coords_y, const int size_x, const i
     epd_write_line(chart_x+i*dist_between_hori_lines, lastReadings[i].value, chart_x+(i+1)*dist_between_hori_lines, lastReadings[i+1].value, 0x44, framebuffer);
   }
   
-  
-
-  //epd_write_line(chart_x+dist_between_hori_lines, water_levels_arr[0], chart_x+2*dist_between_hori_lines, water_levels_arr[1], 0x44, framebuffer);
-  //epd_write_line(chart_x+2*dist_between_hori_lines, water_levels_arr[1], chart_x+3*dist_between_hori_lines, water_levels_arr[2], BLACK, framebuffer);
-
   // Serial.print("PO wykresie:");
   // Serial.println(chart_x);
   // Serial.println(chart_y);
