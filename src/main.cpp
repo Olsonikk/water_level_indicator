@@ -300,7 +300,6 @@ void setup() {
   delay(1000);
   drawChart(x0,y0, CHART_WIDTH, CHART_HEIGHT);
   //write_string((GFXfont *)&OpenSans18B, buf, &x0, &y0, NULL);
-  //writeln((GFXfont *)&OpenSans18B, "pivo", &x0, &y0, NULL);
   epd_draw_grayscale_image(epd_full_screen(), framebuffer);
   //delay(1000);
 
